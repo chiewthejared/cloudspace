@@ -1,23 +1,22 @@
-# main.py
-# Final corrected version using the google-generativeai SDK
+# A program that handles input and output interaction between user and Vertex AI
+# Vertex AI acts as a chatbot, fed with information from a Google Datastore containing documents with structured data (PDFs, JSONs, etc.)
+# Created to follow the concepts of Google AgentSpace
+# Created by Jared Chiew
 
 import functions_framework
 import json
 import os
 import traceback
-
-# --- CORRECTED IMPORTS for the google-generativeai SDK ---
 import google.genai as genai
 from google.generativeai.types import Tool, VertexAISearch
 
 # --- Configuration ---
 PROJECT_ID = os.environ.get("GCP_PROJECT", "cspace-jared")
-LOCATION = os.environ.get("GCP_LOCATION", "global") # Must be a supported region for the model
+LOCATION = os.environ.get("GCP_LOCATION", "global")
 MODEL_NAME = "gemini-1.5-flash-001"
 
 # --- Tool and Model Configuration ---
 # For this SDK, the tool configuration is a dictionary
-# IMPORTANT: Replace the datastore path with your actual datastore resource string.
 tool = Tool(
     retrieval=genai_types.Retrieval(
         source=genai.VertexAISearch(
@@ -102,4 +101,5 @@ def chatbot_webhook(request):
         error_message = "I apologize, but I encountered an internal error. Please check the function logs for details."
         error_payload = {"fulfillmentText": error_message}
         return json.dumps(error_payload), 500, {"Content-Type": "application/json", **headers}
+
 
