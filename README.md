@@ -1,2 +1,1 @@
-**More descriptions about the files in this repository:**\n
-chatbot.py - A python programs that feeds Vertex AI information from documents containing structured data (PDFs, JSON, etc.) and querying information to this program through commands/another python program.
+Jared Chiew's repository containing all files, scripts and queries created and used during his time as a Data Engineering intern at Cloud Space.
